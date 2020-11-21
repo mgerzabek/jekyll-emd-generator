@@ -25,8 +25,8 @@ module EnhanceMetaData
 
     def self.product(doc)
 
-      dir = File.dirname(@site.in_source_dir(doc.path))
-      file = dir + "/product.json"
+      dir = File.dirname(doc.path)
+      file = @site.in_source_dir(dir,"product.json")
       Jekyll.logger.info "", file
       if File.exist?(file)
 
@@ -66,8 +66,8 @@ module EnhanceMetaData
 
     def self.elements(doc)
 
-      dir = File.dirname(@site.in_source_dir(doc.path))
-      file = dir + "/elements.json"
+      dir = File.dirname(doc.path)
+      file = @site.in_source_dir(dir,"elements.json")
       Jekyll.logger.info "", file
       if File.exist?(file)
         #
