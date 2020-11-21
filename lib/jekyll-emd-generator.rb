@@ -8,14 +8,15 @@ module EnhanceMetaData
     def generate(site)
 
       site.pages.each do |page|
-        Jekyll.logger.info "", page.path
         if File.fnmatch( "index.{html,md}", page.path, File::FNM_EXTGLOB )
+          Jekyll.logger.info "", page.path
           ["elements"].each do |method|
             Generator.method(method).call page
           end
         end
         if File.fnmatch( "**/index.{html,md}", page.path, File::FNM_EXTGLOB )
         #if File.fnmatch( "**index.{html,md}", page.path, File::FNM_EXTGLOB )
+          Jekyll.logger.info "", page.path
           ["product", "elements"].each do |method|
             Generator.method(method).call page
           end
