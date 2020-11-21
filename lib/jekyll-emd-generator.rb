@@ -51,7 +51,7 @@ module EnhanceMetaData
           if File.exist?(image)
             dimensions = FastImage.size(image)
             doc.data['image'] = {}
-            doc.data['image']['path'] = '/' + image
+            doc.data['image']['path'] = '/' + dir + '/' + doc.data['product']['image']
             doc.data['image']['width'] = dimensions[0]
             doc.data['image']['height'] = dimensions[1]
           else
