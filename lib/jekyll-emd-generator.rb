@@ -25,7 +25,6 @@ module EnhanceMetaData
 
       dir = File.dirname(doc.path)
       file = site.in_source_dir(dir,"product.json")
-      Jekyll.logger.info "", file
       if File.exist?(file)
 
         doc.data['product'] = SafeYAML.load_file(file)
@@ -48,7 +47,7 @@ module EnhanceMetaData
         # Product.image wird zu @image falls nicht im
         # Frontmatter überschrieben
         if doc.data['image'].nil?
-          image = "#{dir}/#{doc.data['product']['image']}"
+          image = site.in_source_dir(dir,doc.data['product']['image'])
           if File.exist?(image)
             dimensions = FastImage.size(image)
             doc.data['image'] = {}
@@ -66,7 +65,6 @@ module EnhanceMetaData
 
       dir = File.dirname(doc.path)
       file = site.in_source_dir(dir,"elements.json")
-      Jekyll.logger.info "", file
       if File.exist?(file)
         #
         Jekyll.logger.info "", file
