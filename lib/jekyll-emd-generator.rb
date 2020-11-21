@@ -7,17 +7,17 @@ module EnhanceMetaData
     
     def generate(site)
 
+      @site = site
+      
       site.pages.each do |page|
         if File.fnmatch( "index.{html,md}", page.path, File::FNM_EXTGLOB )
-          Jekyll.logger.info "", site.in_source_dir(page.path)
           ["elements"].each do |method|
-            Generator.method(method).call site.in_source_dir(page.path)
+            Generator.method(method).call page
           end
         end
         if File.fnmatch( "**/index.{html,md}", page.path, File::FNM_EXTGLOB )
-          Jekyll.logger.info "", site.in_source_dir(page.path)
           ["product", "elements"].each do |method|
-            Generator.method(method).call site.in_source_dir(page.path)
+            Generator.method(method).call page
           end
         end
       end
@@ -25,8 +25,9 @@ module EnhanceMetaData
 
     def self.product(doc)
 
-      dir = File.dirname(doc.path)
+      dir = File.dirname(@site.in_source_dir(doc.path))
       file = dir + "/product.json"
+      Jekyll.logger.info "", file
       if File.exist?(file)
 
         doc.data['product'] = SafeYAML.load_file(file)
@@ -65,8 +66,9 @@ module EnhanceMetaData
 
     def self.elements(doc)
 
-      dir = File.dirname(doc.path)
+      dir = File.dirname(@site.in_source_dir(doc.path))
       file = dir + "/elements.json"
+      Jekyll.logger.info "", file
       if File.exist?(file)
         #
         Jekyll.logger.info "", file
