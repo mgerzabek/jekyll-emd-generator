@@ -1,5 +1,5 @@
 module EnhanceMetaData
-  class Generator
+  class Generator < Jekyll::Generator
     VERSION = "0.1.0"
   end
 end
