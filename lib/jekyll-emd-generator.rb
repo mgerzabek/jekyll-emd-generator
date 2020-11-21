@@ -1,3 +1,4 @@
+require 'jekyll'
 require 'fastimage'
 require 'jekyll-emd-generator/version'
 
