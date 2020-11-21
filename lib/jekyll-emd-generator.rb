@@ -8,13 +8,13 @@ module EnhanceMetaData
     def generate(site)
 
       site.pages.each do |page|
-        #if File.fnmatch( "index.{html,md}", page.path, File::FNM_EXTGLOB )
-        #  ["elements"].each do |method|
-        #    Generator.method(method).call page
-        #  end
-        #end
-        #if File.fnmatch( "**/index.{html,md}", page.path, File::FNM_EXTGLOB )
-        if File.fnmatch( "**index.{html,md}", page.path, File::FNM_EXTGLOB )
+        if File.fnmatch( "index.{html,md}", page.path, File::FNM_EXTGLOB )
+          ["elements"].each do |method|
+            Generator.method(method).call page
+          end
+        end
+        if File.fnmatch( "**/index.{html,md}", page.path, File::FNM_EXTGLOB )
+        #if File.fnmatch( "**index.{html,md}", page.path, File::FNM_EXTGLOB )
           ["product", "elements"].each do |method|
             Generator.method(method).call page
           end
