@@ -1,9 +1,8 @@
-require 'jekyll'
 require 'fastimage'
 require 'jekyll-emd-generator/version'
 
-module Jekyll
-  class EnhanceMetaDataGenerator < Jekyll::Generator
+module EnhanceMetaData
+  class Generator < Jekyll::Generator
     
     def generate(site)
 
