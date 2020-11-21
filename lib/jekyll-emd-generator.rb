@@ -30,7 +30,7 @@ module EnhanceMetaData
 
         doc.data['product'] = SafeYAML.load_file(file)
         #
-        #Jekyll.logger.info "", file
+        Jekyll.logger.info "", file
         #
         # jekyll-seo-plugin @title
         # Der Product.name wird zu @title falls nicht im 
@@ -68,7 +68,7 @@ module EnhanceMetaData
       file = dir + "/elements.json"
       if File.exist?(file)
         #
-        #Jekyll.logger.info "", file
+        Jekyll.logger.info "", file
         #
         doc.data['elements'] = SafeYAML.load_file(file)
       end
