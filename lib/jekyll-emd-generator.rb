@@ -14,7 +14,7 @@ module EnhanceMetaData
           end
         end
         if File.fnmatch( "**/index.{html,md}", page.path, File::FNM_EXTGLOB )
-          ["offer", "elements"].each do |method|
+          ["acl", "offer", "elements"].each do |method|
             Generator.method(method).call(page,site)
           end
         end
@@ -70,6 +70,18 @@ module EnhanceMetaData
         #Jekyll.logger.info "", file
         #
         doc.data['elements'] = SafeYAML.load_file(file)
+      end
+    end
+
+    def self.acl(doc,site)
+
+      dir = File.dirname(doc.path)
+      file = site.in_source_dir(dir,"acl.json")
+      if File.exist?(file)
+        #
+        #Jekyll.logger.info "", file
+        #
+        doc.data['acl'] = SafeYAML.load_file(file)
       end
     end
   end
